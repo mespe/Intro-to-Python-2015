@@ -26,20 +26,16 @@ except FileNotFoundError:
     pass
 
 
-def get_param_values(param, key = usda_key, url = base):
-    '''
-    Returns the possible values for a single parameter 'param'
+def get_param_values(param, key = usda_key):
+    url = 'http://quickstats.nass.usda.gov/api/get_param_values/?key='
 
-    >>> get_param_values('sector_desc')[:3]
-    ['ANIMALS & PRODUCTS', 'CROPS', 'DEMOGRAPHICS']
+    url_with_key = url + key + '&param=' + param
 
-    '''
-		url = 'http://quickstats.nass.usda.gov/api/get_param_values/?key='
-		url_with_key = url + key + '&param=' + param
-		
-		response = requests.get(url_with_key)
-    # Your task- fill this in
-    pass
+    response = requests.get(url_with_key)
+    return response  
+pass
+
+
 
 
 def query(parameters, key=usda_key):
