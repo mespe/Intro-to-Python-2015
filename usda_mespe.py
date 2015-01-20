@@ -39,22 +39,13 @@ pass
 
 
 def query(parameters, key=usda_key):
-    '''
-    Returns the JSON response from the USDA agricultural database
+    url = 'http://quickstats.nass.usda.gov/api/api_GET/?key='
+    query_str = '&'.join("{!s}={!s}".format(key,val) for (key,val) in parameters.items())
+    url_with_key = url + key + '&' + query_str 
+    response = requests.get(url_with_key)
+    return response
+pass
 
-    'parameters' is a dictionary of parameters that can be referenced here:
-        http://quickstats.nass.usda.gov/api
-
-    Example: Return all the records around cattle in Tehama County
-
-    >>> cowparams = {'commodity_desc': 'CATTLE',
-                     'state_name': 'CALIFORNIA',
-                     'county_name': 'TEHAMA'}
-    >>> tehamacow = query(cowparams)
-
-    '''
-    # Your task- fill this in
-    pass
 
 
 if __name__ == '__main__':
